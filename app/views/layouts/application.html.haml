@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    = favicon_link_tag image_path 'favicon.png'
+    %title Recall
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'#, 'data-turbolinks-track': 'application'
+    = javascript_include_tag 'application'#, 'data-turbolinks-track': 'application'
+    = yield :scripts
+    %script{:src => "/api/js.js", :type => "text/javascript"}
+
+  %body{data: {controller: controller_name, action: action_name}, class: body_class}
+    = yield
+    = render 'shared/flash_messages'

@@ -1,0 +1,200 @@
+%header#header
+  .container
+    .row
+      .col-sm-12.overflow
+        .social-icons.pull-right
+          %ul.nav.nav-pills
+            %li
+              %a{:href => ""}
+                %i.fa.fa-facebook
+            %li
+              %a{:href => ""}
+                %i.fa.fa-linkedin
+  .navbar.navbar-inverse{:role => "banner"}
+    .container
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "/"}
+          %h2{:style => "font-weight: bold;font-size:40px;"}
+            %span.fa.fa-phone{style:'transform: rotate(47deg);font-size: 31px;margin-right: -19px;'} &nbsp;
+            ReCall
+
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right{style:'margin-right:-39px;'}
+          %li
+            %a{:href => "/"} How It Works
+          %li
+            %a{:href => "#"} Help
+          %li
+            - unless user_signed_in?
+              = link_to 'Login', new_user_session_path, class: 'btn btn-default coming-soon', style: 'padding:8px 30px;margin-top:10px;'
+            - else
+              = link_to 'Dashboard', dashboard_path, class: 'btn btn-default', style: 'padding:8px 30px;margin-top:10px;'
+
+/ /#header
+%section#home-slider
+  .container
+    .main-slider
+      .slide-text
+        %h1.title Hassle-free offline payment processor
+        %p Boudin doner frankfurter pig. Cow shank bresaola pork loin tri-tip tongue venison pork belly meatloaf short loin landjaeger biltong beef ribs shankle chicken andouille.
+        - unless user_signed_in?
+          = link_to 'Get Started', new_user_registration_path, class: 'btn btn-submit get-started signup'
+        - else
+          = link_to 'Get Started', dashboard_path, class: 'btn btn-submit get-started signup'
+
+      %img.img-responsive.slider-house{:alt => "slider image", :src => image_path("home/slider/slide1/house.png")}/
+      %img.slider-circle1{:alt => "slider image", :src => image_path("home/slider/slide1/circle1.png")}/
+      %img.slider-circle2{:alt => "slider image", :src => image_path("home/slider/slide1/circle2.png")}/
+      %img.slider-cloud1{:alt => "slider image", :src => image_path("home/slider/slide1/cloud1.png")}/
+      %img.slider-cloud2{:alt => "slider image", :src => image_path("home/slider/slide1/cloud2.png")}/
+      %img.slider-cloud3{:alt => "slider image", :src => image_path("home/slider/slide1/cloud3.png")}/
+      %img.slider-sun{:alt => "slider image", :src => image_path("home/slider/slide1/sun.png")}/
+      %img.slider-cycle{:alt => "", :src => image_path("home/cycle.png")}/
+  .preloader
+    %i.fa.fa-sun-o.fa-spin
+/ /#home-slider
+%section#services
+  .container
+    .row
+      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "300ms", "data-wow-duration" => "1000ms"}
+        .single-service
+          .wow.scaleIn{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+            %span.fa.fa-cogs{style: 'font-size: 80px;margin-bottom: 25px;color: #0F77BC;'} &nbsp;
+          %h2 Hassle-free setup
+          %p 
+            We want you to start your business right away. With Recall, you can set-up your business in just a few minutes. Just submit the list of requirements needed and there! See your business running and grow.
+
+      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "900ms", "data-wow-duration" => "1000ms"}
+        .single-service
+          .wow.scaleIn{"data-wow-delay" => "900ms", "data-wow-duration" => "500ms"}
+            %span.fa.fa-list-alt{style: 'font-size: 80px;margin-bottom: 25px;color: #D4C632;'} &nbsp;
+          %h2 Easy sales tracking
+          %p 
+            We provide our partners a simply designed dashboard that will enable them to monitor, check and verify all transactions being made. Additional features such as filters and sales report are added that allow them to see their sales status with transparency.
+
+      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
+        .single-service
+          .wow.scaleIn{"data-wow-delay" => "600ms", "data-wow-duration" => "500ms"}
+            %span.fa.fa-flag{style: 'font-size: 80px;margin-bottom: 25px;color: #b96f56;'} &nbsp;
+          %h2 Get Notifications
+          %p 
+            With our notification, you will never miss a single transaction. You will see the notifications on your dashboard and receive emails directly to your inbox.
+
+/ /#services
+%section#action.responsive
+  .vertical-center
+    .container
+      .row
+        .action.take-tour
+          .col-sm-7.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+            %h1.title Lorem ipsum Nostrud dolore
+            %p A responsive, retina-ready & wide multipurpose template.
+          .col-sm-5.text-center.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+            .tour-button
+              %a.btn.btn-common{:href => "#"} TAKE THE TOUR
+/ /#action
+%section#features
+  .container
+    .row
+      .single-features
+        .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %img.img-responsive{:alt => "", :src => image_path("home/image1.png")}/
+        .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %h2 Web Pay
+          %p
+            Sit back!  Get your computer and browse to get thetransaction code for easier payment experience.
+
+      .single-features
+        .col-sm-6.col-sm-offset-1.align-right.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %h2 Pay using your Mobile App
+          %p
+            Our mobile application enables our customer to pay their bills in anytime at anyplace.
+
+        .col-sm-5.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %img.img-responsive{:alt => "", :src => image_path("home/image2.png")}/
+      .single-features
+        .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %img.img-responsive{:alt => "", :src => image_path("home/image3.png")}/
+        .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %h2 Checkout Solution
+          %p 
+            With this fully customize feature, you can easily integrate our checkout solution to your existing website
+/ /#features
+%section#clients
+  .container
+    .row
+      .col-sm-12
+        .clients.text-center.wow.fadeInUp{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+          %p
+            %img.img-responsive{:alt => "", :src => image_path("home/clients.png")}/
+          %h1.title Partners
+          %p
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            %br/
+            Ut enim ad minim veniam, quis nostrud
+        .clients-logo.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/palawan.png")}/
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/ml.png")}/
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/lbc.png")}/
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/dragonp.png")}/
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/pp.png")}/
+          .col-xs-3.col-sm-2
+            %a{:href => "#"}
+              %img.img-responsive{:alt => "", :src => image_path("partners/bpi.png")}/
+/ /#clients
+%footer#footer
+  .container
+    .row
+      .col-sm-12.text-center.bottom-separator
+        %img.img-responsive.inline{:alt => "", :src => image_path("home/under.png")}/
+
+      .col-md-offset-2.col-md-4.col-sm-6
+        .contact-info.bottom
+          %h2 Contacts
+          %address
+            E-mail:
+            %a{:href => "mailto:support@Recall.com"} support@Recall.com
+            %br/
+            Phone: +639 177 610855
+            %br/
+          %h2 Address
+          %address
+            Technology Business Incubator
+            %br/
+            UP Cebu Gorordo Ave
+            %br/
+            Cebu City, 6000
+            %br/
+            Philippines
+            %br/
+      .col-md-4.col-sm-12
+        .contact-form.bottom
+          %h2 We'd love to hear from you!
+          %form#main-contact-form{:action => api_contact_us_path, :method => "post", :name => "contact-form"}
+            = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+            .form-group
+              %input.form-control{:name => "name", :placeholder => "Name", :required => "required", :type => "text"}/
+            .form-group
+              %input.form-control{:name => "email", :placeholder => "Email Id", :required => "required", :type => "email"}/
+            .form-group
+              %textarea#message.form-control{:name => "message", :placeholder => "Your text here", :required => "required", :rows => "8"}
+            .form-group
+              %input.btn.btn-submit{:name => "submit", :type => "submit", :value => "Send", data: {:'disable-with'=>'Sending ..'}}/
+      .col-sm-12
+        .copyright-text.text-center
+          %p &copy; Recall 2016. All Rights Reserved.

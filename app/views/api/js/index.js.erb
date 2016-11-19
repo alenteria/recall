@@ -1,0 +1,37 @@
+HOST = "http://<%= Recall::DOMAIN%>";
+// == LOAD LIBRARIES
+var loadCss = function(src, location){
+  var link = document.createElement( "link" );
+  link.href = src;
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.media = "screen,print";
+  location.appendChild(link);
+}
+var loadJS = function(url, implementationCode, location){
+    var scriptTag = document.createElement('script');
+    scriptTag.src = url;
+    scriptTag.onload = implementationCode;
+    scriptTag.onreadystatechange = implementationCode;
+    location.appendChild(scriptTag);
+};
+// == LOAD LIBRARIES
+
+// === MAIN FUNCTIONS
+var MAIN = function(){
+  var widget = "<%= escape_javascript(render('widget')) %>";
+  $('body').append(widget);
+}
+// === MAIN FUNCTIONS
+
+window.onload= function(){
+  loadCss(HOST+"/api/style.css", document.body);
+  loadJS('http://cdn.sinch.com/latest/sinch.min.js', function(){}, document.body);
+  if(typeof jQuery == 'undefined'){
+    loadJS(HOST+"/api/jquery.min.js", function(){
+      loadJS(HOST+"/api/bootstrap.min.js", MAIN, document.body);
+    }, document.body);
+  }else{
+    loadJS(HOST+"/api/bootstrap.min.js", MAIN, document.body);
+  }
+}

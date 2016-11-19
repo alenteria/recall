@@ -1,0 +1,51 @@
+.btn-facebook {
+  width: 100%;
+  margin: 15px 0 15px;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #586B93;
+  background-image: -moz-linear-gradient(top, #7787a7, #586b93);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7787a7), to(#586b93));
+  background-image: -webkit-linear-gradient(top, #7787a7, #586b93);
+  background-image: -o-linear-gradient(top, #7787a7, #586b93);
+  background-image: linear-gradient(to bottom, #7787a7, #586b93);
+  background-repeat: repeat-x;
+  border-color: #586B93;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7787A7', endColorstr='#586B93', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+/* line 270, ../sass/main.scss */
+.apollo-container .btn-facebook:hover,
+.apollo-container .btn-facebook:visited,
+.apollo-container .btn-facebook:active,
+.apollo-container .btn-facebook:focus,
+.apollo-container .btn-facebook.active,
+.apollo-container .btn-facebook.disabled,
+.apollo-container .btn-facebook[disabled] {
+  color: #FFFFFF;
+  background-color: #586B93;
+}
+.btn-submit{
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-weight: bold;
+  font-size: large !important;
+}
+
+a:disabled{
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+
+li > a.btn:hover{
+  border: 1px solid #d29948 !important;
+}
+.get-started{
+  padding: 10px 72px !important;
+  width: auto !important;
+}

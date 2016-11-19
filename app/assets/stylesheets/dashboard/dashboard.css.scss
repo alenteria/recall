@@ -1,0 +1,41 @@
+.dashboard{
+  .dropdown-menu{
+    padding: 10px;
+  }
+}
+#sidebar ul#dock li.launcher:hover:before, #sidebar ul#dock li.launcher.active:before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  position: absolute;
+  right: -6px;
+  margin-top: 22px;
+}
+.mini-pic{
+  display: inline-block;
+  height: 30px;
+  img{
+    height: 100%;
+    width: auto;
+  }
+}
+.pic{
+  display: inline-block;
+  height: 70px;
+  .delete-pic{
+    position: absolute;
+    margin: 7px;
+    z-index: 1111;
+  }
+  img{
+    opacity: 0.5;
+    height: 100%;
+    width: auto;
+  }
+}

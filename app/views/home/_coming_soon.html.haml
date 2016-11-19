@@ -1,0 +1,27 @@
+/ Modal
+%form#coming-soon.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", method: 'POST', action: api_contact_us_path}
+  = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4#myModalLabel.modal-title
+          %strong Recall
+          is under construction
+      .modal-body
+        %p 
+          Thank you for your interest. We'll keep you posted once we are ready.
+          We are still laying out the foundation of Recall but you can get on the beta launch list by entering your email address below.
+        %p
+          %input{type: 'email', class: 'form-control input-lg', name: 'email', placeholder: 'you@domain.com', required: true}
+      .modal-footer{style:'text-align:center;'}
+        %input.btn.btn-submit.get-started{:type => "submit", value: 'Submit', data: {:'disable-with'=>'Submitting ..'}}
+
+= content_for :scripts do
+  :coffeescript
+    $(document).on 'click', '.coming-soon.btn, .btn.signup', (e)->
+      e.preventDefault()
+      $('#coming-soon').modal('show')
+      false

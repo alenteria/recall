@@ -1,0 +1,20 @@
+.modal.fade#share-options{"aria-labelledby" => "#{ticket.id}label", :role => "dialog", :tabindex => "-1", class: "call-dialog-#{ticket.id}"}
+  .modal-dialog{:role => "document"}
+    .modal-content{style: 'min-height: 207px'}
+      .modal-header
+        %span.fa.fa-phone.text-success
+        Call
+        - if ticket.customer_name.present?
+          = ticket.customer_name
+        - else
+          = ticket.title
+
+      .modal-body.text-center
+        %form
+          .control-group
+            %input.form-control{type: 'text', value: ticket.customer_phone}
+          %br
+          %button.btn.btn-success.btn-lg.call{type: 'button', data: {'disable-with'=>'Calling ..'}} Call
+          %button.btn.btn-danger.btn-lg.hangup{type: 'button', disabled: true, data: {'disable-with'=>'Hanging up ..'}} Hangup
+          %audio#incoming{:autoplay => ""}
+          %audio#ringback{:loop => "", :src => "/ringback.wav"}

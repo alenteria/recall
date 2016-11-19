@@ -1,0 +1,29 @@
+.modal.auth{
+  overflow: scroll;
+  .modal-dialog{
+    width: 450px;
+  }
+}
+.forgot-pass{
+  display: block;
+  margin-top: 10px;
+}
+
+[data-controller="auth_sessions"]{
+  #lightboxOverlay, #lightbox{
+    display: none !important;
+  }
+}
+
+[data-controller="auth_registrations"], [data-controller="auth_sessions"], [data-controller="auth_passwords"], [data-controller="auth_confirmations"]{
+  .footer{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 30px;
+    color: #31200b;
+  }
+  .modal-backdrop.fade.in{
+    background: asset-url("assets/city-bg.png") 0 100% repeat-x #000;
+  }
+}

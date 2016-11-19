@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    = favicon_link_tag image_path 'favicon.png'
+    %title Recall | Dashboard
+    = csrf_meta_tags
+    :javascript
+      window.SINCH_APPLICATION_KEY = '#{Recall::SINCH_APPLICATION_KEY}';
+      window.EMAIL = '#{current_user.email}';
+      window.PASSWORD = '#{current_user.encrypted_password}';
+
+    = stylesheet_link_tag    'dashboard', media: 'all'#, 'data-turbolinks-track': 'dashboard'
+    = javascript_include_tag 'dashboard'#, 'data-turbolinks-track': 'dashboard'
+    = yield :scripts
+
+  %body{class: 'dashboard', data: {controller: controller_name, action: action_name}}
+    = render 'dashboard/shared/navbar'
+    #wrapper
+      = render 'dashboard/shared/sidebar'
+
+      = render 'dashboard/shared/bread_crumb'
+
+
+      / Content
+      #content
+        .panel.panel-default
+          = yield
+    = render 'shared/flash_messages', options: {data: {backdrop: 'false'}, style: 'position:inherit;'}

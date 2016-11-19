@@ -1,0 +1,61 @@
+.modal.auth.fade.in{style: 'display: block;'}
+  .modal-dialog{class: flash[:alert].present? ? 'shake' : ''}
+    .modal-content
+      .modal-body
+        %h2
+          .text-center
+            = link_to root_path do
+              = image_tag 'logo.png'
+
+        .text-center
+          %a.btn.btn-primary.btn-lg.btn-facebook{href: user_facebook_omniauth_authorize_path, data: {'ajax-callback'=>user_facebook_omniauth_callback_path, :'disable-with'=>'Logging in with <strong>Facebook</strong> ..'}}
+            Login with
+            %strong Facebook
+
+        %p.horizontal-seperator
+          %strong or
+
+        = render 'auth/shared/flash_messages'
+        = resend_confirmation_link
+
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.input :email, input_html: {class: 'input-lg'}
+          = f.input :password, input_html: {class: 'input-lg'}
+          = f.input :remember_me, as: :hidden, input_html: {value: true}
+          .actions.text-center
+            %button.btn.btn-submit.btn-lg.login{data: {'disable-with'=>'<i class="fa fa-lock">&nbsp;</i> Loggin in..'}}
+              %i.fa.fa-lock &nbsp;
+              Log in
+            = link_to 'Forgot Password?', new_user_password_path, class: 'forgot-pass'
+
+        %br
+        %p.horizontal-seperator -
+        .text-center
+          %span Don't have account yet?
+          = link_to 'Sign Up', new_user_registration_path
+        %br
+
+.modal-backdrop.fade.in
+= render 'auth/shared/footer'
+
+= content_for :scripts do
+  :coffeescript
+    window.fbAsyncInit = ->
+      FB.init
+        appId: '#{Recall::FACEBOOK_KEY}'
+        version: 'v2.6'
+        status: true
+        cookie: true
+      return
+
+    ((d, s, id) ->
+      js = undefined
+      fjs = d.getElementsByTagName(s)[0]
+      if d.getElementById(id)
+        return
+      js = d.createElement(s)
+      js.id = id
+      js.src = '//connect.facebook.net/en_US/sdk.js'
+      fjs.parentNode.insertBefore js, fjs
+      return
+    ) document, 'script', 'facebook-jssdk'

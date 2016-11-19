@@ -1,0 +1,29 @@
+.modal.auth.fade.in{style: 'display: block;'}
+  .modal-dialog{class: flash[:alert].present? ? 'shake' : ''}
+    .modal-content
+      .modal-body
+        %h2
+          .text-center
+            = link_to root_path do
+              = image_tag 'logo.png'
+
+        %br
+        %h2.text-center Resend unlock instructions
+        %br
+        - if flash[:alert].present?
+          %p.alert.alert-danger
+            = flash[:alert]
+        = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+          = f.input :email, input_html: {class: 'input-lg', autofocus: true}
+          .actions.text-center
+            %button.btn.btn-submit.btn-lg.login{data: {'disable-with'=>'Submitting ..'}, style: 'width:100%'}
+              Submit
+
+        %br
+        %p.horizontal-seperator -
+        .text-center
+          = link_to 'Login', new_user_session_path
+        %br
+
+.modal-backdrop.fade.in
+= render 'auth/shared/footer'

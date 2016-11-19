@@ -1,0 +1,16 @@
+/ Modal
+- options ||= {}
+- options[:data] ||= {}
+- options[:style] ||= {}
+- options[:data][:backdrop] ||= 'true'
+
+- if flash_messages.present?
+  .flash.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", data: options[:data], style: options[:style]}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} &#215;
+
+          %h4#myModalLabel.modal-title{class: "text-#{flash_type}"}
+            = flash_messages.html_safe

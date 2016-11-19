@@ -1,0 +1,48 @@
+.panel.panel-default.grid
+  .panel-body.filters
+    .row
+      .col-md-3
+        = search_form_for @q, url: dashboard_tickets_path do |f|
+          .input-group
+            = f.search_field :title_or_description_cont, :placeholder => "Quick search...", class: 'form-control', autofocus: true
+            %span.input-group-btn
+              %button.btn.btn-default{:type => "submit"}
+                %i.fa.fa-search &nbsp;
+      .col-md-9.text-right
+        = link_to new_dashboard_ticket_path, class: 'btn btn-primary' do
+          %i.fa.fa-plus
+          = "New #{t :ticket}"
+
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Subject
+        / %th Comments
+        %td Status
+        %th.actions
+          Actions
+    %tbody
+      - if @tickets.empty?
+        %tr.warning
+          %td.text-center{colspan: 6}
+            \- No records -
+      - @tickets.each do |ticket|
+        %tr
+          %td.nowrap
+            %u= ticket.ref_number
+          %td= ticket.title
+          / %td
+          /   = truncate(ticket.description, length: 100){link_to "(show)", '#', class: 'modal-trigger', data: {target: ".ticket-detail-#{ticket.id}"}}
+          /   = render "details", {ticket: ticket}
+          %td= ticket.status
+          / %td{class: "#{ticket.image.present? ? 'nowrap' : ''}"}
+          /   = image_tag ticket.image.url(:thumb), class: 'img-thumbnail' if ticket.image.present?
+          %td.action
+            = link_to "", edit_dashboard_ticket_path(ticket), class: 'btn btn-info fa fa-pencil'
+            = link_to "", edit_dashboard_ticket_path(ticket), class: 'btn btn-success fa fa-phone modal-trigger', data: {target: ".call-dialog-#{ticket.id}"}
+            = render 'call_dialog', {ticket: ticket}
+
+            = link_to "", dashboard_ticket_path(ticket), class: 'btn btn-danger fa fa-trash-o', data: {confirm: "Delete #{ticket.title}?", method: 'delete'}
+  .panel-footer
+    = will_paginate @tickets, renderer: BootstrapPagination::Rails

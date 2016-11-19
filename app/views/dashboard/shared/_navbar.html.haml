@@ -1,0 +1,29 @@
+/ Navbar
+#navbar.navbar.navbar-default
+  = link_to dashboard_path, class: 'navbar-brand' do
+    = image_tag '/assets/logo.png', class: 'logo inline-block'
+    %span.inline-block.text-normal Recall
+  %ul.nav.navbar-nav.pull-right
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %b.caret
+        %strong Availability
+        %span= current_user.get_availability
+      %ul.dropdown-menu{style: 'padding: 10px;'}
+        %li
+          = link_to dashboard_update_availability_path(availability: 'offline'), method: :post do
+            %span.fa.fa-certificate{style:'color:gray'}
+            Offline
+        %li
+          = link_to dashboard_update_availability_path(availability: 'online'), method: :post do
+            %span.fa.fa-certificate{style:'color:green'}
+            Online
+
+    %li.dropdown.user.hidden-xs
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        = image_tag current_user.get_avatar_url, class: 'img-rounded'
+        %b.caret
+        %strong= "Agent "+current_user.first_name
+      %ul.dropdown-menu{style: 'padding: 10px;'}
+        %li
+          = link_to "Sign out", destroy_user_session_path, method: :delete

@@ -1,0 +1,28 @@
+.modal.auth.fade.in{style: 'display: block;'}
+  .modal-dialog{class: flash[:alert].present? ? 'shake' : ''}
+    .modal-content
+      .modal-body
+        %h2
+          .text-center
+            = link_to root_path do
+              = image_tag 'logo.png'
+
+        %br
+        %h2.text-center Forgot your password?
+        %br
+        = render 'auth/shared/flash_messages'
+
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = f.input :email, input_html: {class: 'input-lg'}
+          .actions.text-center
+            %button.btn.btn-submit.btn-lg.login{data: {'disable-with'=>'Submitting ..'}, style: 'width:100%'}
+              Reset password
+
+        %br
+        %p.horizontal-seperator -
+        .text-center
+          = link_to 'Login', new_user_session_path
+        %br
+
+.modal-backdrop.fade.in
+= render 'auth/shared/footer'

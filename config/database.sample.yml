@@ -1,0 +1,9 @@
+development: &development
+  host: localhost
+  adapter: postgresql
+  username: alenteria
+  database: Recall_dev
+
+test:
+  <<: *development
+  database: Recall_test

@@ -1,0 +1,11 @@
+.modal.fade{"aria-labelledby" => "#{ticket.id}label", :role => "dialog", :tabindex => "-1", class: "ticket-detail-#{ticket.id}"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4.modal-title{id: "#{ticket.id}label"}
+          = ticket.title
+
+      .modal-body
+        = ticket.description
