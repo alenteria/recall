@@ -1,6 +1,24 @@
-.panel.panel-default
-  .panel-heading
-    %i.fa.fa-edit.fa-large
-    Edit Ticket
-  .panel-body
-    = render 'form'
+- url = @ticket.id.present? ? dashboard_ticket_path(@ticket) : dashboard_tickets_path
+= simple_form_for @ticket, url: url, html_options: {class: "edit_ticket"} do |f|
+  = f.input :logs, as: 'hidden'
+  %audio#incoming{:autoplay => ""}
+  %audio#ringback{:loop => "", :src => "/ringback.wav"}
+
+  .panel.panel-default
+    .panel-heading
+      = "Ticket ##{@ticket.ref_number}"
+      = f.input :status, prompt: 'status', collection: Ticket.statuses_for_select, label: false, input_html: {style: 'width: 90px;'}
+      
+      - if params[:call]
+        :javascript
+          start_call()
+        .pull-right{style:'display: inline-block;margin-top: 5px;'}
+          %span.call-status Calling ..
+          %button.call-hangup.btn.btn-danger.btn-lg{type: 'button'} Hangup
+
+    .panel-body
+      = render 'form', {f: f}
+
+- if params[:call]
+  %pre#call-logs-display{style:'margin-left: 10px;margin-right: 11px;'}
+    = @ticket.try(:logs)

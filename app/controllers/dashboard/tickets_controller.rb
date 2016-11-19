@@ -3,7 +3,7 @@ class Dashboard::TicketsController < Dashboard::BaseController
   before_action :load_or_init_ticket, only: [:show, :destroy, :create, :edit, :update, :new]
 
   def index
-    @q = current_user.tickets.order('created_at asc').search(params[:q])
+    @q = Ticket.order('created_at asc').search(params[:q])
     @tickets = @q.result.paginate(:page => params[:page])
   end
 
@@ -28,10 +28,12 @@ class Dashboard::TicketsController < Dashboard::BaseController
 
   def update
     @ticket.update_attributes(ticket_params)
+    @ticket.update_column :agent_id, current_user.id
+
     if @ticket.invalid?
       render :edit
     else
-      flash[:success] = "#{I18n.t(:ticket)} successfully updated!"
+      # flash[:success] = "#{I18n.t(:ticket)} successfully updated!"
       redirect_to dashboard_tickets_path
     end
   end
@@ -45,12 +47,12 @@ class Dashboard::TicketsController < Dashboard::BaseController
   private
 
   def ticket_params
-    params.fetch(:ticket).permit(:title, :description, :image, :status, :customer_phone, :customer_name)
+    params.fetch(:ticket).permit(:title, :description, :image, :status, :customer_phone, :customer_name, :logs, :category)
   end
 
   def load_or_init_ticket
     @ticket = if params[:id].present?
-      current_user.tickets.find(params[:id])
+      Ticket.find(params[:id])
     else
       current_user.tickets.new
     end

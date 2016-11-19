@@ -40,7 +40,7 @@
           /   = image_tag ticket.image.url(:thumb), class: 'img-thumbnail' if ticket.image.present?
           %td.action
             = link_to "", edit_dashboard_ticket_path(ticket), class: 'btn btn-info fa fa-pencil'
-            = link_to "", edit_dashboard_ticket_path(ticket), class: 'btn btn-success fa fa-phone modal-trigger', data: {target: ".call-dialog-#{ticket.id}"}
+            = link_to "", edit_dashboard_ticket_path(ticket, call: true), class: 'btn btn-success fa fa-phone', data: {target: ".call-dialog-#{ticket.id}"}
             = render 'call_dialog', {ticket: ticket}
 
             = link_to "", dashboard_ticket_path(ticket), class: 'btn btn-danger fa fa-trash-o', data: {confirm: "Delete #{ticket.title}?", method: 'delete'}

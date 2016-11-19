@@ -39,3 +39,12 @@
     width: auto;
   }
 }
+.form-group.ticket_status{
+  display: inline-block;
+  margin-left: 10px;
+}
+.call-hangup:disabled{
+  background: rgb(245, 245, 245);
+  color: gray;
+  border-color: gray;
+}

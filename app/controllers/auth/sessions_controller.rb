@@ -1,4 +1,5 @@
 class Auth::SessionsController < Devise::SessionsController
+  before_action :set_offline, only: [:destroy]
   layout 'simple'
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -17,7 +18,7 @@ class Auth::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
@@ -25,5 +26,9 @@ class Auth::SessionsController < Devise::SessionsController
   # end
   def after_sign_in_path_for(resource_or_scope)
     stored_location_for(resource_or_scope) || dashboard_path
+  end
+
+  def set_offline
+    current_user.update_column :availability, 'offline'
   end
 end

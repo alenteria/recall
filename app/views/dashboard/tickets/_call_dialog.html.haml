@@ -1,20 +1,14 @@
-.modal.fade#share-options{"aria-labelledby" => "#{ticket.id}label", :role => "dialog", :tabindex => "-1", class: "call-dialog-#{ticket.id}"}
-  .modal-dialog{:role => "document"}
-    .modal-content{style: 'min-height: 207px'}
+.modal.fade#share-options{"aria-labelledby" => "#{ticket.id}label", :role => "dialog", :tabindex => "-1", class: "call-dialog-#{ticket.id}", data: {backdrop: 'static', keyboard: 'false'}}
+  .modal-dialog.modal-sm{:role => "document"}
+    .modal-content{style: 'min-height: 357px;'}
       .modal-header
-        %span.fa.fa-phone.text-success
-        Call
-        - if ticket.customer_name.present?
-          = ticket.customer_name
-        - else
-          = ticket.title
-
+        %strong Callback Request
       .modal-body.text-center
-        %form
-          .control-group
-            %input.form-control{type: 'text', value: ticket.customer_phone}
-          %br
-          %button.btn.btn-success.btn-lg.call{type: 'button', data: {'disable-with'=>'Calling ..'}} Call
-          %button.btn.btn-danger.btn-lg.hangup{type: 'button', disabled: true, data: {'disable-with'=>'Hanging up ..'}} Hangup
-          %audio#incoming{:autoplay => ""}
-          %audio#ringback{:loop => "", :src => "/ringback.wav"}
+        %img{src: '/calling-icon.gif', style: 'width: 140px;margin-bottom: -19px;margin-top: -9px;'}
+        %p= ticket.customer_name
+        %p= ticket.customer_phone
+        %p
+          %strong= ticket.category || "Technicall Support"
+        %br
+        %button.btn.btn-success.btn-lg.accept.call-btn{type: 'button', data: {'disable-with'=>'Hanging up ..'}} Accept
+        %button.btn.btn-danger.btn-lg.call-btn{type: 'button', disabled: false, "data-dismiss" => "modal", :type => "button", data: {'disable-with'=>'Hanging up ..'}} Hangup

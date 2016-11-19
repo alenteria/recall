@@ -19,8 +19,11 @@ class Ticket < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
+  def self.statuses_for_select
+    ['OPEN', 'IN-PROGRESS', 'SOLVED']
+  end
+
   def ref_number
     "00#{id}"
   end
-
 end

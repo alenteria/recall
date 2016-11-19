@@ -1,6 +1,10 @@
-.panel.panel-default
-  .panel-heading
-    %i.fa.fa-edit.fa-large
-    New Ticket
-  .panel-body
-    = render 'form'
+= simple_form_for @ticket, url: dashboard_tickets_path do |f|
+  .panel.panel-default
+    .panel-heading
+      New Ticket
+      = f.input :status, prompt: 'status', collection: Ticket.statuses_for_select, label: false, input_html: {style: 'width: 90px;'}
+    .panel-body
+      = render 'form', {f: f}
+
+- if @ticket.try(:logs).present?
+  %pre= @ticket.logs
