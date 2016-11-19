@@ -1,8 +1,8 @@
 = f.input :title, label: 'Subject'
 = f.input :customer_name
 = f.input :customer_phone
-= f.input :description, as: :text, label: 'Comments', input_html: {rows: 3}
+= f.input :description, as: :text, label: 'Comments', input_html: {rows: 3, value: ''}
 /= f.input :image, label: 'Add Picture', as: :file, input_html: {accept: 'image/*'}
-- submit_label = @ticket.id ? 'Save' : 'Submit'
-= f.submit submit_label, class: 'btn btn-primary btn-lg', data: {:'disable-with'=> 'Submitting ..'}
+
+= f.submit 'Submit', class: 'btn btn-primary btn-lg', data: {:'disable-with'=> 'Submitting ..'}
 = link_to 'cancel', dashboard_tickets_path

@@ -17,6 +17,7 @@ class Dashboard::TicketsController < Dashboard::BaseController
     unless @ticket.persisted?
       render :new
     else
+      @ticket.ticket_logs.create(action: 'Open the ticket', content: params[:ticket][:description], agent_id: current_user.id)
       flash[:success] = "#{I18n.t(:ticket)} successfully created!"
       redirect_to dashboard_tickets_path
     end
@@ -33,6 +34,7 @@ class Dashboard::TicketsController < Dashboard::BaseController
     if @ticket.invalid?
       render :edit
     else
+      create_ticket_log
       # flash[:success] = "#{I18n.t(:ticket)} successfully updated!"
       redirect_to dashboard_tickets_path
     end
@@ -40,14 +42,14 @@ class Dashboard::TicketsController < Dashboard::BaseController
 
   def destroy
     @ticket.destroy
-    flash[:warning] = "<b>#{@ticket.title}</b> has been deleted <span class='fa fa-trash-o'>&nbsp;</i>".html_safe
+    flash[:warning] = "<b>Ticket #{@ticket.ref_number}</b> has been deleted <span class='fa fa-trash-o'>&nbsp;</i>".html_safe
     redirect_to :back
   end
 
   private
 
   def ticket_params
-    params.fetch(:ticket).permit(:title, :description, :image, :status, :customer_phone, :customer_name, :logs, :category)
+    params.fetch(:ticket).permit(:title, :image, :status, :customer_phone, :customer_name, :logs, :category)
   end
 
   def load_or_init_ticket
@@ -58,5 +60,11 @@ class Dashboard::TicketsController < Dashboard::BaseController
     end
   rescue
     raise ActionController::RoutingError, 'Product Not Found'
+  end
+
+  def create_ticket_log(action: 'Commented')
+    if (content = params[:ticket][:description]).present?
+      @ticket.ticket_logs.create(action: action, content: content, agent_id: current_user.id)
+    end
   end
 end

@@ -4,7 +4,7 @@
       .col-md-3
         = search_form_for @q, url: dashboard_tickets_path do |f|
           .input-group
-            = f.search_field :title_or_description_cont, :placeholder => "Quick search...", class: 'form-control', autofocus: true
+            = f.search_field :title_or_description_or_status_or_customer_name_or_agent_first_name_cont, :placeholder => "Quick search...", class: 'form-control', autofocus: true
             %span.input-group-btn
               %button.btn.btn-default{:type => "submit"}
                 %i.fa.fa-search &nbsp;
@@ -17,9 +17,12 @@
     %thead
       %tr
         %th #
+        %th Status
         %th Subject
         / %th Comments
-        %td Status
+        %th Customer
+        %th Agent
+        %th Department
         %th.actions
           Actions
     %tbody
@@ -31,11 +34,14 @@
         %tr
           %td.nowrap
             %u= ticket.ref_number
+          %td.nowrap= ticket.status
           %td= ticket.title
           / %td
           /   = truncate(ticket.description, length: 100){link_to "(show)", '#', class: 'modal-trigger', data: {target: ".ticket-detail-#{ticket.id}"}}
           /   = render "details", {ticket: ticket}
-          %td= ticket.status
+          %td= ticket.customer_name
+          %td= ticket.agent.try(:full_name)
+          %td= ticket.category
           / %td{class: "#{ticket.image.present? ? 'nowrap' : ''}"}
           /   = image_tag ticket.image.url(:thumb), class: 'img-thumbnail' if ticket.image.present?
           %td.action

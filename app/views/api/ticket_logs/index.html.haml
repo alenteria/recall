@@ -1,0 +1,13 @@
+.panel.panel-default
+  .panel-body
+    - @ticket.ticket_logs.each do |log|
+      .log
+        .div.agent
+          = log.agent.try(:full_name)
+
+          %strong= log.action
+          %small
+            %i= log.created_at.to_s(:short_with_time)
+        %p
+          = log.content
+      %hr

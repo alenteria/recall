@@ -1,6 +1,8 @@
 #*** Set up sinchClient ***/
 window.loggedin = false
 call = undefined
+window.ticket_id = undefined
+logs = ""
 
 sinchClient = new SinchClient(
   applicationKey: SINCH_APPLICATION_KEY
@@ -72,12 +74,15 @@ register = ->
 login()
 ###** Define listener for managing calls **###
 
-$("#call-logs-display").html($("#ticket_logs").val())
 append_logs = (str)->
-  logs = $("#ticket_logs").val()
-  logs = logs+ "\n" + str + "\n"
-  $("#ticket_logs").val(logs)
-  $("#call-logs-display").html(logs)
+  logs = logs + "\n" + str
+
+submit_logs = ->
+  $.post '/api/ticket_logs', {action: "Call Logs", content: logs, ticket_id: ticket_id}, (res)->
+    console.log res
+    return
+
+  $("#call-logs-display").load("http://localhost:3000/api/ticket_logs/?ticket_id="+ticket_id)
 
 callClient = sinchClient.getCallClient()
 callClient.initStream().then ->
@@ -88,10 +93,8 @@ callClient.initStream().then ->
 $(document).on 'click', 'button.call-hangup', (event) ->
   $(this).prop('disabled', true)
   event.preventDefault()
+  submit_logs()
   call and call.hangup()
-  setTimeout ->
-    $('.edit_ticket').submit()
-  , 1000
   return
 
 ###** Handle errors, report them and re-enable UI **###
@@ -115,4 +118,5 @@ if location.protocol == 'file:' and navigator.userAgent.toLowerCase().indexOf('c
   $('div#chromeFileWarning').show()
 
 $(document).on 'submit', 'form.edit_ticket', ->
+  submit_logs()
   call and call.hangup()

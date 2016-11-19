@@ -5,6 +5,7 @@ class Ticket < ApplicationRecord
 
   # == Associations ================================
   belongs_to :agent, class_name: 'User'
+  has_many :ticket_logs
 
   has_attached_file :image,
   styles: { medium: "300x300>", thumb: "100x100>"},
@@ -17,7 +18,7 @@ class Ticket < ApplicationRecord
   # == Constants ===================================
   # == Validations =================================
   validates :title, presence: true
-  validates :description, presence: true
+  # validates :description, presence: true
 
   def self.statuses_for_select
     ['OPEN', 'IN-PROGRESS', 'SOLVED']
