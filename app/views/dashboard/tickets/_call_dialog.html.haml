@@ -10,5 +10,6 @@
         %p
           %strong= ticket.category || "Technicall Support"
         %br
-        %button.btn.btn-success.btn-lg.accept.call-btn{type: 'button', data: {'disable-with'=>'Hanging up ..'}} Accept
+        = link_to edit_dashboard_ticket_path(ticket, call: true), class: 'btn btn-success btn-lg accept', data: {'disable-with'=>'Calling Customer ..'} do
+          Accept
         %button.btn.btn-danger.btn-lg.call-btn{type: 'button', disabled: false, "data-dismiss" => "modal", :type => "button", data: {'disable-with'=>'Hanging up ..'}} Hangup

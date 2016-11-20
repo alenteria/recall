@@ -8,6 +8,6 @@
           %strong= log.action
           %small
             %i= log.created_at.to_s(:short_with_time)
-        %p
-          = log.content
+        %p{style:'background: #f3eeee;padding: 10px;border-radius: 4px;'}
+          = log.content.html_safe
       %hr

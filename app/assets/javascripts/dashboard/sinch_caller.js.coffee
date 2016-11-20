@@ -75,7 +75,7 @@ login()
 ###** Define listener for managing calls **###
 
 append_logs = (str)->
-  logs = logs + "\n" + str
+  logs = logs + "<br/>" + str
 
 submit_logs = ->
   $.post '/api/ticket_logs', {action: "Call Logs", content: logs, ticket_id: ticket_id}, (res)->

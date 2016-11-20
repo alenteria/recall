@@ -16,22 +16,53 @@ var loadJS = function(url, implementationCode, location){
     location.appendChild(scriptTag);
 };
 // == LOAD LIBRARIES
-
-// === MAIN FUNCTIONS
-var MAIN = function(){
+var exec = function(){
   var widget = "<%= escape_javascript(render('widget')) %>";
   $('body').append(widget);
-}
-// === MAIN FUNCTIONS
+  $("#habla_beta_container_do_not_rely_on_div_classes_or_names").remove();
+  $("#msSurveySuperHolder").remove();
 
-window.onload= function(){
-  loadCss(HOST+"/api/style.css", document.body);
-  loadJS('http://cdn.sinch.com/latest/sinch.min.js', function(){}, document.body);
-  if(typeof jQuery == 'undefined'){
-    loadJS(HOST+"/api/jquery.min.js", function(){
-      loadJS(HOST+"/api/bootstrap.min.js", MAIN, document.body);
-    }, document.body);
-  }else{
-    loadJS(HOST+"/api/bootstrap.min.js", MAIN, document.body);
-  }
+  $('.recall-here #recall-widget input.phone').val('+639');
+  $(document).on('click', '.recall-here #recall-widget .btn-phone-float', function(){
+    $("#recall-widget").addClass('open');
+  });
+
+  $(document).on('click', '.recall-here #recall-widget .submit-form .close', function(){
+    $("#recall-widget").removeClass('open');
+  });
+
+  $(document).on('submit', '#recall-widget form.submit-form', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: HOST+"/api/tickets",
+      data: {
+        customer_name: $("#recall-widget form.submit-form input.name").val(),
+        customer_phone: $("#recall-widget form.submit-form input.phone").val(),
+      },
+      dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
+      method: 'post',
+      success:function(json){
+      },
+      error:function(){
+      }
+    });
+  })
 }
+
+var page_loaded_checker = function(){
+  var readyStateCheckInterval = setInterval(function() {
+    if (document.readyState === "complete") {
+      clearInterval(readyStateCheckInterval);
+      loadCss(HOST+"/api/style.css", document.body);
+      loadJS('http://cdn.sinch.com/latest/sinch.min.js', function(){}, document.body);
+      if(typeof jQuery == 'undefined'){
+        loadJS(HOST+"/api/jquery.min.js", function(){
+          exec()
+        }, document.body);
+      }else{
+        exec()
+      }
+    }
+  }, 10);
+}
+page_loaded_checker();

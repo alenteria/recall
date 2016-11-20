@@ -1,8 +1,10 @@
 / Navbar
 #navbar.navbar.navbar-default
   = link_to dashboard_path, class: 'navbar-brand' do
-    = image_tag '/assets/logo.png', class: 'logo inline-block'
-    %span.inline-block.text-normal Recall
+    %h2{:style => "font-weight: bold;font-size:40px; margin-top: -13px;margin-left: -20px;"}
+      %span.fa.fa-phone{:style => "transform: rotate(47deg);font-size: 31px;margin-right: -19px;"} &#160;
+      ReCall
+
   %ul.nav.navbar-nav.pull-right
     %li.dropdown
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

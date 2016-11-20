@@ -2,6 +2,7 @@ class Ticket < ApplicationRecord
   self.per_page = 15
 
   # == Constants ===================================
+  CATEGORIES = ['Billing', 'Technical']
 
   # == Associations ================================
   belongs_to :agent, class_name: 'User'

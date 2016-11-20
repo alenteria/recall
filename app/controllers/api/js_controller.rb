@@ -4,9 +4,6 @@ class Api::JsController < ApplicationController
   before_action :load_account
 
   def index
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

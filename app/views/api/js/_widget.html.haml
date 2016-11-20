@@ -1,0 +1,18 @@
+.recall-here
+  #recall-widget{style:'display:none'}
+    %a.btn.btn-phone-float
+      .icon
+
+    %form.submit-form
+      %a.close ✖
+      %h2{style:'font-size:25px'} Unfortunately, we are out of the office. Would you like us to call you back?
+      %input.name{type: 'text', name: 'name', placeholder: 'Your name'}
+      %input.phone{type: 'text', name: 'phone', placeholder: 'Your phone'}
+      / %img.cp-icon{:alt => "", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAMAAABYi/ZGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwAAAA7FhxZAAAAPHRSTlMAVufLD3v+nGZG7uENkam1R04BwTj95BeMyAoGx7sJGuO/J+pQt4008MDfRDPrmijiGL4EiDrMdUml72c68CCxAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALiAAAC4gB5Y4pSQAAAJhJREFUGNNlztcWgjAMBuBotQ6cqOBGcG/cK+//XDZge5rjf5GLL2kTAMhkRQ548hKxwKmIKrLErEyGTsU2JzGs2lZLrW5bI7Wmba4gavHF7Y4yz+fYpcFen9lgSDgaMwwmhCE7EaIpofBhNl+YznJF6K1V2Ww17vaoIw8aj7FBNH+ezv8Gl6v8PbbX3+6JPdhN7vMVvz/wBcuMHpMxcdOsAAAAAElFTkSuQmCC"}/
+
+      %select{class: 'category', name: 'category'}
+        - Ticket::CATEGORIES.each do |c|
+          %option{value: c}= c
+
+      %button.submit{type: 'submit'} Request a call-back
+    .overlay

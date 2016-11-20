@@ -1,0 +1,5 @@
+$('.recall-here .submit-form button.submit').addClass('active').text('Request Sent!').prop('disabled', true);
+setTimeout(function(){
+  $('.recall-here #recall-widget .submit-form .close').click();
+  $('.recall-here .submit-form button.submit').removeClass('active').text(' Request a call-back').prop('disabled', false);
+},5000);
