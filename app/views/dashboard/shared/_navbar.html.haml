@@ -15,11 +15,11 @@
         %li
           = link_to dashboard_update_availability_path(availability: 'offline'), method: :post do
             %span.fa.fa-certificate{style:'color:gray'}
-            Offline
+            %strong online
         %li
           = link_to dashboard_update_availability_path(availability: 'online'), method: :post do
             %span.fa.fa-certificate{style:'color:green'}
-            Online
+            %strong online
 
     %li.dropdown.user.hidden-xs
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

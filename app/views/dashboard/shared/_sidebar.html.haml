@@ -2,9 +2,9 @@
 %section#sidebar
   %i#toggle.fa.fa-align-justify.fa.fa-large
   %ul#dock
-    = active_list dashboard_path, {attributes: {class: 'launcher'}} do |href|
-      %i.fa.fa-area-chart
-      = link_to "Dashboard", href
+    / = active_list dashboard_path, {attributes: {class: 'launcher'}} do |href|
+    /   %i.fa.fa-area-chart
+    /   = link_to "Dashboard", href
 
     = active_list dashboard_tickets_path, {active: :inclusive, attributes: {class: 'launcher'}} do |href|
       %i.fa.fa-flag

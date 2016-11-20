@@ -38,6 +38,7 @@ var exec = function(){
       data: {
         customer_name: $("#recall-widget form.submit-form input.name").val(),
         customer_phone: $("#recall-widget form.submit-form input.phone").val(),
+        category: $("#recall-widget form.submit-form .category").val(),
       },
       dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
       method: 'post',

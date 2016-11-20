@@ -24,3 +24,6 @@
 - if @ticket.id.present?
   #call-logs-display{style:'margin-left: 10px;margin-right: 11px;'}
     = render template: 'api/ticket_logs/index', locals: {ticket: @ticket}
+
+- if params[:call]
+  = render 'call_dialog'

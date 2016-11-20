@@ -1,10 +1,15 @@
-dismissed_tickets = localStorage.getItem('dismissed_call_prompts') || []
-if (<%= @new_ticket.present? ? true : false %>){
-
-  if (!$('.call-modal-options').is(':visible') && !dismissed_tickets.includes(<%= @new_ticket.try(:id) %>)){
-    $('.call-modal-options').html("<%= @new_ticket.present? ? escape_javascript(render('dashboard/tickets/call_dialog_content', {ticket: @new_ticket})) : ''%>")
+dismissed_tickets = localStorage.getItem('dismissed_call_prompts') || ""
+dismissed_tickets = dismissed_tickets.split(",")
+found_new = false
+<%- @new_tickets.each do |ticket| %>
+if (<%= ticket.present? ? true : false %>){
+  if (!$('.call-modal-options').is(':visible') && !dismissed_tickets.includes('<%= ticket.try(:id) %>')){
+    found_new = true
+    $('.call-modal-options').html("<%= ticket.present? ? escape_javascript(render('dashboard/tickets/call_dialog_content', {ticket: ticket})) : ''%>")
     $('.call-modal-options').modal('show');
   }
 }else{
   $('.call-modal-options').modal('hide');
 }
+
+<%- end %>
