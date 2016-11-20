@@ -28,7 +28,7 @@
     %tbody
       - if @tickets.empty?
         %tr.warning
-          %td.text-center{colspan: 6}
+          %td.text-center{colspan: 7}
             \- No records -
       - @tickets.each do |ticket|
         %tr
@@ -46,9 +46,16 @@
           /   = image_tag ticket.image.url(:thumb), class: 'img-thumbnail' if ticket.image.present?
           %td.action
             = link_to "", edit_dashboard_ticket_path(ticket), class: 'btn btn-info fa fa-pencil'
-            = link_to "", edit_dashboard_ticket_path(ticket, call: true), class: 'btn btn-success fa fa-phone modal-trigger', data: {target: ".call-dialog-#{ticket.id}"}
-            = render 'call_dialog', {ticket: ticket}
+            = link_to "", edit_dashboard_ticket_path(ticket, call: true), class: 'btn btn-success fa fa-phone', data: {target: ".call-dialog-#{ticket.id}"}
 
             = link_to "", dashboard_ticket_path(ticket), class: 'btn btn-danger fa fa-trash-o', data: {confirm: "Delete #{ticket.title}?", method: 'delete'}
   .panel-footer
     = will_paginate @tickets, renderer: BootstrapPagination::Rails
+
+= render 'call_dialog'
+
+:coffeescript
+  $(document).on "turbolinks:load", ->
+    if #{@tickets.where(is_new: true).any?}
+      target = $('.call-dialog-#{@tickets.where(is_new: true).last.try(:id)}')
+      target.modal('show')

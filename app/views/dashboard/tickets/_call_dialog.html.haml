@@ -1,15 +1,1 @@
-.modal.fade#share-options{"aria-labelledby" => "#{ticket.id}label", :role => "dialog", :tabindex => "-1", class: "call-dialog-#{ticket.id}", data: {backdrop: 'static', keyboard: 'false'}}
-  .modal-dialog.modal-sm{:role => "document"}
-    .modal-content{style: 'min-height: 357px;'}
-      .modal-header
-        %strong Callback Request
-      .modal-body.text-center
-        %img{src: '/calling-icon.gif', style: 'width: 140px;margin-bottom: -19px;margin-top: -9px;'}
-        %p= ticket.customer_name
-        %p= ticket.customer_phone
-        %p
-          %strong= ticket.category || "Technicall Support"
-        %br
-        = link_to edit_dashboard_ticket_path(ticket, call: true), class: 'btn btn-success btn-lg accept', data: {'disable-with'=>'Calling Customer ..'} do
-          Accept
-        %button.btn.btn-danger.btn-lg.call-btn{type: 'button', disabled: false, "data-dismiss" => "modal", :type => "button", data: {'disable-with'=>'Hanging up ..'}} Hangup
+.modal.fade#share-options.call-modal-options{"aria-labelledby" => "Ticketlabel", :role => "dialog", :tabindex => "-1", class: "call-dialog", data: {backdrop: 'static', keyboard: 'false'}}

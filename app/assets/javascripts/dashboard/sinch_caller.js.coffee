@@ -45,8 +45,21 @@ callListeners =
       append_logs('Failure message: ' + call.error.message)
     return
 
+setInterval ->
+  $.get('/api/tickets/check_for_new.js')
+, 3000
+
+update_call_status = (status)->
+  $.post '/api/users/update_call_status', {on_call: status, ticket_id: ticket_id}, (res)->
+    console.log res
+    return
+
+$(document).on "turbolinks:load", ->
+  update_call_status(true)
+
 ###** Make a new PSTN call **###
 window.start_call = ->
+  update_call_status(false)
   setTimeout ->
     call = callClient.callPhoneNumber($('input#ticket_customer_phone').val())
     call.addEventListener callListeners
@@ -84,6 +97,9 @@ submit_logs = ->
 
   $("#call-logs-display").load("http://localhost:3000/api/ticket_logs/?ticket_id="+ticket_id)
 
+hangup_call = ->
+  call and call.hangup()
+
 callClient = sinchClient.getCallClient()
 callClient.initStream().then ->
   # Directly init streams, in order to force user to accept use of media sources at a time we choose
@@ -94,7 +110,8 @@ $(document).on 'click', 'button.call-hangup', (event) ->
   $(this).prop('disabled', true)
   event.preventDefault()
   submit_logs()
-  call and call.hangup()
+  update_call_status(true)
+  hangup_call()
   return
 
 ###** Handle errors, report them and re-enable UI **###
@@ -119,4 +136,5 @@ if location.protocol == 'file:' and navigator.userAgent.toLowerCase().indexOf('c
 
 $(document).on 'submit', 'form.edit_ticket', ->
   submit_logs()
-  call and call.hangup()
+  update_call_status(true)
+  hangup_call()

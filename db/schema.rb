@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119182335) do
+ActiveRecord::Schema.define(version: 20161120014323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20161119182335) do
     t.string   "customer_phone"
     t.text     "logs"
     t.string   "category"
+    t.boolean  "is_new"
     t.index ["agent_id"], name: "index_tickets_on_agent_id", using: :btree
   end
 
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 20161119182335) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "availability"
+    t.boolean  "on_call"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

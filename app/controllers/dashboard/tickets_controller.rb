@@ -3,7 +3,7 @@ class Dashboard::TicketsController < Dashboard::BaseController
   before_action :load_or_init_ticket, only: [:show, :destroy, :create, :edit, :update, :new]
 
   def index
-    @q = Ticket.order('created_at asc').search(params[:q])
+    @q = Ticket.order('created_at DESC').search(params[:q])
     @tickets = @q.result.paginate(:page => params[:page])
   end
 
