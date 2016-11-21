@@ -97,6 +97,11 @@
   display: none !important;
 }
 
+.recall-here #recall-widget.open .text-label{
+  display: none !important;
+}
+
+
 .recall-here #recall-widget.open .submit-form, .recall-here #recall-widget.open .overlay{
   display: block !important;
 }
