@@ -7,9 +7,11 @@ if (<%= ticket.present? ? true : false %>){
     found_new = true
     $('.call-modal-options').html("<%= ticket.present? ? escape_javascript(render('dashboard/tickets/call_dialog_content', {ticket: ticket})) : ''%>")
     $('.call-modal-options').modal('show');
+    $("#new-request")[0].play()
   }
 }else{
   $('.call-modal-options').modal('hide');
+  $("#new-request")[0].pause()
 }
 
 <%- end %>

@@ -7,8 +7,9 @@
     = stylesheet_link_tag    'application', media: 'all'#, 'data-turbolinks-track': 'application'
     = javascript_include_tag 'application'#, 'data-turbolinks-track': 'application'
     = yield :scripts
-    %script{:src => "//localhost:3000/api.js?key=reca-k1kdjs0k2kdkalao", :type => "text/javascript"}
 
   %body{data: {controller: controller_name, action: action_name}, class: body_class}
     = yield
     = render 'shared/flash_messages'
+    :javascript
+      var js = document.createElement("script"); js.type = "text/javascript"; js.src = "http://#{Recall::DOMAIN}/api.js?key=reca-k1kdjs0k2kdkalao"; document.body.appendChild(js);

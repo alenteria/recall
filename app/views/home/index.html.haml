@@ -25,8 +25,8 @@
 
       .collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right{style:'margin-right:-39px;'}
-          %li
-            %a{:href => "/"} How It Works
+          / %li
+          /   %a{:href => "/"} How It Works
           %li
             %a{:href => "#"} Help
           %li
@@ -40,7 +40,7 @@
   .container
     .main-slider
       .slide-text
-        %h1.title Hassle-free offline payment processor
+        %h1.title Customer callback
         %p Boudin doner frankfurter pig. Cow shank bresaola pork loin tri-tip tongue venison pork belly meatloaf short loin landjaeger biltong beef ribs shankle chicken andouille.
         - unless user_signed_in?
           = link_to 'Get Started', new_user_registration_path, class: 'btn btn-submit get-started signup'
@@ -58,105 +58,113 @@
   .preloader
     %i.fa.fa-sun-o.fa-spin
 / /#home-slider
-%section#services
-  .container
-    .row
-      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "300ms", "data-wow-duration" => "1000ms"}
-        .single-service
-          .wow.scaleIn{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-            %span.fa.fa-cogs{style: 'font-size: 80px;margin-bottom: 25px;color: #0F77BC;'} &nbsp;
-          %h2 Hassle-free setup
-          %p 
-            We want you to start your business right away. With Recall, you can set-up your business in just a few minutes. Just submit the list of requirements needed and there! See your business running and grow.
+/ %section#services
+/   .container
+/     .row
+/       .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "300ms", "data-wow-duration" => "1000ms"}
+/         .single-service
+/           .wow.scaleIn{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/             %span.fa.fa-cogs{style: 'font-size: 80px;margin-bottom: 25px;color: #0F77BC;'} &nbsp;
+/           %h2 Hassle-free setup
+/           %p 
+/             We want you to start your business right away. With Recall, you can set-up your business in just a few minutes. Just submit the list of requirements needed and there! See your business running and grow.
 
-      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "900ms", "data-wow-duration" => "1000ms"}
-        .single-service
-          .wow.scaleIn{"data-wow-delay" => "900ms", "data-wow-duration" => "500ms"}
-            %span.fa.fa-list-alt{style: 'font-size: 80px;margin-bottom: 25px;color: #D4C632;'} &nbsp;
-          %h2 Easy sales tracking
-          %p 
-            We provide our partners a simply designed dashboard that will enable them to monitor, check and verify all transactions being made. Additional features such as filters and sales report are added that allow them to see their sales status with transparency.
+/       .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "900ms", "data-wow-duration" => "1000ms"}
+/         .single-service
+/           .wow.scaleIn{"data-wow-delay" => "900ms", "data-wow-duration" => "500ms"}
+/             %span.fa.fa-list-alt{style: 'font-size: 80px;margin-bottom: 25px;color: #D4C632;'} &nbsp;
+/           %h2 Easy sales tracking
+/           %p 
+/             We provide our partners a simply designed dashboard that will enable them to monitor, check and verify all transactions being made. Additional features such as filters and sales report are added that allow them to see their sales status with transparency.
 
-      .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
-        .single-service
-          .wow.scaleIn{"data-wow-delay" => "600ms", "data-wow-duration" => "500ms"}
-            %span.fa.fa-flag{style: 'font-size: 80px;margin-bottom: 25px;color: #b96f56;'} &nbsp;
-          %h2 Get Notifications
-          %p 
-            With our notification, you will never miss a single transaction. You will see the notifications on your dashboard and receive emails directly to your inbox.
+/       .col-sm-4.text-center.padding.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
+/         .single-service
+/           .wow.scaleIn{"data-wow-delay" => "600ms", "data-wow-duration" => "500ms"}
+/             %span.fa.fa-flag{style: 'font-size: 80px;margin-bottom: 25px;color: #b96f56;'} &nbsp;
+/           %h2 Get Notifications
+/           %p 
+/             With our notification, you will never miss a single transaction. You will see the notifications on your dashboard and receive emails directly to your inbox.
 
 / /#services
-%section#action.responsive
-  .vertical-center
-    .container
-      .row
-        .action.take-tour
-          .col-sm-7.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-            %h1.title Lorem ipsum Nostrud dolore
-            %p A responsive, retina-ready & wide multipurpose template.
-          .col-sm-5.text-center.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-            .tour-button
-              %a.btn.btn-common{:href => "#"} TAKE THE TOUR
-/ /#action
-%section#features
-  .container
-    .row
-      .single-features
-        .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %img.img-responsive{:alt => "", :src => image_path("home/image1.png")}/
-        .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %h2 Web Pay
-          %p
-            Sit back!  Get your computer and browse to get thetransaction code for easier payment experience.
+/ %section#action.responsive
+/   .vertical-center
+/     .container
+/       .row
+/         .action.take-tour
+/           .col-sm-7.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/             %h1.title Lorem ipsum Nostrud dolore
+/             %p A responsive, retina-ready & wide multipurpose template.
+/           .col-sm-5.text-center.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/             .tour-button
+/               %a.btn.btn-common{:href => "#"} TAKE THE TOUR
+/ / /#action
+/ %section#features
+/   .container
+/     .row
+/       .single-features
+/         .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %img.img-responsive{:alt => "", :src => image_path("home/image1.png")}/
+/         .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %h2 Web Pay
+/           %p
+/             Sit back!  Get your computer and browse to get thetransaction code for easier payment experience.
 
-      .single-features
-        .col-sm-6.col-sm-offset-1.align-right.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %h2 Pay using your Mobile App
-          %p
-            Our mobile application enables our customer to pay their bills in anytime at anyplace.
+/       .single-features
+/         .col-sm-6.col-sm-offset-1.align-right.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %h2 Pay using your Mobile App
+/           %p
+/             Our mobile application enables our customer to pay their bills in anytime at anyplace.
 
-        .col-sm-5.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %img.img-responsive{:alt => "", :src => image_path("home/image2.png")}/
-      .single-features
-        .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %img.img-responsive{:alt => "", :src => image_path("home/image3.png")}/
-        .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %h2 Checkout Solution
-          %p 
-            With this fully customize feature, you can easily integrate our checkout solution to your existing website
-/ /#features
-%section#clients
-  .container
+/         .col-sm-5.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %img.img-responsive{:alt => "", :src => image_path("home/image2.png")}/
+/       .single-features
+/         .col-sm-5.wow.fadeInLeft{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %img.img-responsive{:alt => "", :src => image_path("home/image3.png")}/
+/         .col-sm-6.wow.fadeInRight{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %h2 Checkout Solution
+/           %p 
+/             With this fully customize feature, you can easily integrate our checkout solution to your existing website
+/ / /#features
+/ %section#clients
+/   .container
+/     .row
+/       .col-sm-12
+/         .clients.text-center.wow.fadeInUp{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
+/           %p
+/             %img.img-responsive{:alt => "", :src => image_path("home/clients.png")}/
+/           %h1.title Partners
+/           %p
+/             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+/             %br/
+/             Ut enim ad minim veniam, quis nostrud
+/         .clients-logo.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/palawan.png")}/
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/ml.png")}/
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/lbc.png")}/
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/dragonp.png")}/
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/pp.png")}/
+/           .col-xs-3.col-sm-2
+/             %a{:href => "#"}
+/               %img.img-responsive{:alt => "", :src => image_path("partners/bpi.png")}/
+/ / /#clients
+%section#installation
+  .container.text-center
+    %h2
+      Insert this code at the bottom of the body tag
     .row
-      .col-sm-12
-        .clients.text-center.wow.fadeInUp{"data-wow-delay" => "300ms", "data-wow-duration" => "500ms"}
-          %p
-            %img.img-responsive{:alt => "", :src => image_path("home/clients.png")}/
-          %h1.title Partners
-          %p
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            %br/
-            Ut enim ad minim veniam, quis nostrud
-        .clients-logo.wow.fadeIn{"data-wow-delay" => "600ms", "data-wow-duration" => "1000ms"}
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/palawan.png")}/
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/ml.png")}/
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/lbc.png")}/
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/dragonp.png")}/
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/pp.png")}/
-          .col-xs-3.col-sm-2
-            %a{:href => "#"}
-              %img.img-responsive{:alt => "", :src => image_path("partners/bpi.png")}/
-/ /#clients
+      .col-md-8.col-md-offset-2
+        %pre{style: 'height: 72px;white-space: normal;overflow: scroll;text-align: left;'}
+          = '<script type="text/javascript"> var js = document.createElement("script"); js.type = "text/javascript"; js.src = "http://localhost:3000/api.js?key=reca-k1kdjs0k2kdkalao"; document.body.appendChild(js); </script>'
 %footer#footer
   .container
     .row

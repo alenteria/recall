@@ -1,6 +1,6 @@
 #*** Set up sinchClient ***/
 window.loggedin = false
-call = undefined
+window.calls = []
 window.ticket_id = undefined
 logs = ""
 
@@ -17,6 +17,7 @@ callListeners =
     $('audio#ringback').prop 'currentTime', 0
     $('audio#ringback').trigger 'play'
     append_logs("Ringing...")
+    calls.push call
     $('.call-status').text 'Ringing ...'
     return
   onCallEstablished: (call) ->
@@ -31,7 +32,6 @@ callListeners =
     , 5000
     return
   onCallEnded: (call) ->
-    $('button.call-hangup').prop 'disabled', true
     $('audio#ringback').trigger 'pause'
     $('audio#incoming').attr 'src', ''
     #Report call stats
@@ -57,19 +57,11 @@ update_call_status = (status)->
 $(document).on "turbolinks:load", ->
   update_call_status(true)
 
-###** Make a new PSTN call **###
-window.start_call = ->
-  update_call_status(false)
-  setTimeout ->
-    call = callClient.callPhoneNumber($('input#ticket_customer_phone').val())
-    call.addEventListener callListeners
-  ,1000
-
-
 ###** Name of session, can be anything. **###
-login = ->
+login = (callback)->
   sinchClient.start({username: EMAIL, password: PASSWORD}, (e)->
     console.log "User "+EMAIL+" successfully loggedin."
+    callback()
     return
   ).fail ->
     register()
@@ -79,12 +71,29 @@ register = ->
   sinchClient.newUser({username: EMAIL, password: PASSWORD}, (ticket) ->
     console.log "User "+EMAIL+" successfully initiated."
     sinchClient.start(ticket, ->
+      callback()
       return
     ).fail handleError
     return
   ).fail handleError
 
-login()
+window.hangup_call = ->
+  $(calls).each (i, call)->
+    try
+      call and call.hangup()
+    catch e
+      console.log(e)
+
+###** Make a new PSTN call **###
+window.start_call = ->
+  update_call_status(false)
+  login ->
+    setTimeout ->
+      hangup_call()
+      call = callClient.callPhoneNumber($('input#ticket_customer_phone').val())
+      call.addEventListener callListeners
+      window.calls.push call
+    ,1000
 ###** Define listener for managing calls **###
 
 append_logs = (str)->
@@ -97,9 +106,6 @@ submit_logs = ->
 
   $("#call-logs-display").load("http://localhost:3000/api/ticket_logs/?ticket_id="+ticket_id)
 
-hangup_call = ->
-  call and call.hangup()
-
 callClient = sinchClient.getCallClient()
 callClient.initStream().then ->
   # Directly init streams, in order to force user to accept use of media sources at a time we choose
@@ -107,7 +113,6 @@ callClient.initStream().then ->
   return
 
 $(document).on 'click', 'button.call-hangup', (event) ->
-  $(this).prop('disabled', true)
   event.preventDefault()
   submit_logs()
   update_call_status(true)
@@ -118,6 +123,9 @@ $(document).on 'click', 'button.call-hangup', (event) ->
 
 handleError = (error) ->
   console.log(error)
+  call = callClient.callPhoneNumber($('input#ticket_customer_phone').val())
+  call.addEventListener callListeners
+  calls.push call
   #Show error
   # $('div.error').text error.message
   # $('div.error').show()

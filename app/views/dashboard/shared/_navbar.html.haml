@@ -11,15 +11,15 @@
         %b.caret
         %strong Availability
         %span= current_user.get_availability
-      %ul.dropdown-menu{style: 'padding: 10px;'}
-        %li
-          = link_to dashboard_update_availability_path(availability: 'offline'), method: :post do
-            %span.fa.fa-certificate{style:'color:gray'}
-            %strong online
-        %li
-          = link_to dashboard_update_availability_path(availability: 'online'), method: :post do
-            %span.fa.fa-certificate{style:'color:green'}
-            %strong online
+      / %ul.dropdown-menu{style: 'padding: 10px;'}
+      /   %li
+      /     = link_to dashboard_update_availability_path(availability: 'offline'), method: :post do
+      /       %span.fa.fa-certificate{style:'color:gray'}
+      /       %strong online
+      /   %li
+      /     = link_to dashboard_update_availability_path(availability: 'online'), method: :post do
+      /       %span.fa.fa-certificate{style:'color:green'}
+      /       %strong online
 
     %li.dropdown.user.hidden-xs
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
