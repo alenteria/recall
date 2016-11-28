@@ -43,8 +43,6 @@ class User < ApplicationRecord
 
   phony_normalize :mobile, default_country_code: 'PH'
 
-  validates :availability, inclusion: AVAILABILITIES
-
   # == Class Methods ============================================
   class << self
     def from_omniauth(auth)
