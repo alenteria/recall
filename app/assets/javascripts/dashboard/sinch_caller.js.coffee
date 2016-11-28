@@ -4,9 +4,9 @@ window.calls = []
 window.ticket_id = undefined
 logs = ""
 
-sinchClient = new SinchClient(
+window.sinchClient = new SinchClient(
   applicationKey: SINCH_APPLICATION_KEY
-  capabilities: calling: true
+  capabilities: {calling: true, messaging: true}
   onLogMessage: (message) ->
     console.log message
     return
@@ -81,6 +81,10 @@ window.hangup_call = ->
   $(calls).each (i, call)->
     try
       call and call.hangup()
+      SMSclient = sinchClient.getMessageClient()
+      phoneNumber = $('input#ticket_customer_phone').val()
+      sms_message = 'Thank you for calling ReCall. We had a great time talking with you. Heres the ticket id for your reference: #00'+ticket_id
+      SMSclient.newMessage('+639103907717', sms_message)
     catch e
       console.log(e)
 
