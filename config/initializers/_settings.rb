@@ -6,8 +6,8 @@ end
 
 # == Facebook ======================================================
 if Recall.env.production?
-  Recall::FACEBOOK_KEY = ENV['FACEBOOK_KEY']
-  Recall::FACEBOOK_SECRET = ENV['FACEBOOK_SECRET']
+  Recall::FACEBOOK_KEY = ENV['FACEBOOK_KEY'] || '1257826974275770'
+  Recall::FACEBOOK_SECRET = ENV['FACEBOOK_SECRET'] || '0d2ce18a911069728353ca06a889b4ef'
 else
   Recall::FACEBOOK_KEY = '325403197846567'
   Recall::FACEBOOK_SECRET = 'fbc814e32ec6c67b28fae6fc5544c407'
