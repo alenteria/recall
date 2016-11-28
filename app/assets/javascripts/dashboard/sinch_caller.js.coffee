@@ -58,16 +58,16 @@ $(document).on "turbolinks:load", ->
   update_call_status(true)
 
 ###** Name of session, can be anything. **###
-login = (callback)->
+window.login = (callback)->
   sinchClient.start({username: EMAIL, password: PASSWORD}, (e)->
     console.log "User "+EMAIL+" successfully loggedin."
     callback()
     return
   ).fail ->
-    register()
+    register(callback)
   return
 
-register = ->
+window.register = (callback)->
   sinchClient.newUser({username: EMAIL, password: PASSWORD}, (ticket) ->
     console.log "User "+EMAIL+" successfully initiated."
     sinchClient.start(ticket, ->
