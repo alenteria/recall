@@ -10,7 +10,8 @@
 
       :javascript
         window.ticket_id = #{@ticket.id}
-        $("#new-request")[0].pause()
+        if $("#new-request")
+          $("#new-request")[0].pause()
 
       - if params[:call]
         %script{type: 'text/javascript', "data-turbolinks-eval"=>"always"}
