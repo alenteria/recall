@@ -15,7 +15,7 @@ end
 
 # == Domain =======================================================
 if Recall.env.production?
-  Recall::DOMAIN = 'recool.herokuapp.com'
+  Recall::DOMAIN = 'therecall.herokuapp.com'
 else
   Recall::DOMAIN = 'localhost:3000'
 end
