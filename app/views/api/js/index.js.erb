@@ -1,4 +1,4 @@
-HOST = "http://<%= Recall::DOMAIN%>";
+HOST = "\\<%= Recall::DOMAIN%>";
 // == LOAD LIBRARIES
 var loadCss = function(src, location){
   var link = document.createElement( "link" );
@@ -55,7 +55,7 @@ var page_loaded_checker = function(){
     if (document.readyState === "complete") {
       clearInterval(readyStateCheckInterval);
       loadCss(HOST+"/api/style.css", document.body);
-      loadJS('http://cdn.sinch.com/latest/sinch.min.js', function(){}, document.body);
+      loadJS('\\cdn.sinch.com/latest/sinch.min.js', function(){}, document.body);
       if(typeof jQuery == 'undefined'){
         loadJS(HOST+"/api/jquery.min.js", function(){
           exec()
