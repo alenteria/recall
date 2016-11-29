@@ -17,6 +17,7 @@ var loadJS = function(url, implementationCode, location){
 };
 // == LOAD LIBRARIES
 var exec = function(){
+  $ = $ || jQuery;
   var widget = "<%= escape_javascript(render('widget')) %>";
   $('body').append(widget);
   $("#habla_beta_container_do_not_rely_on_div_classes_or_names").remove();
