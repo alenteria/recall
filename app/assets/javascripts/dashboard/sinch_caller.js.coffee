@@ -108,7 +108,7 @@ submit_logs = ->
     console.log res
     return
 
-  $("#call-logs-display").load("http://localhost:3000/api/ticket_logs/?ticket_id="+ticket_id)
+  # $("#call-logs-display").load("http://localhost:3000/api/ticket_logs/?ticket_id="+ticket_id)
 
 callClient = sinchClient.getCallClient()
 callClient.initStream().then ->
