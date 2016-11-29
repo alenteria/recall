@@ -80,11 +80,11 @@ window.register = (callback)->
 window.hangup_call = ->
   $(calls).each (i, call)->
     try
-      call and call.hangup()
       SMSclient = sinchClient.getMessageClient()
       phoneNumber = $('input#ticket_customer_phone').val()
       sms_message = 'Thank you for calling ReCall. We had a great time talking with you. Heres the ticket id for your reference: #00'+ticket_id
       SMSclient.newMessage('+639103907717', sms_message)
+      call and call.hangup()
     catch e
       console.log(e)
 
