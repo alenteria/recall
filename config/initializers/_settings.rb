@@ -23,8 +23,8 @@ end
 
 # == SINCH ========================================================
 # sandbox
-Recall::SINCH_APPLICATION_KEY = '3d18e22e-f376-44cb-bdbe-3e06988e0739'
-Recall::SINCH_APPLICATION_SECRET = 'nqm8g7tyjUy/8x9wH6P3YQ=='
+Recall::SINCH_APPLICATION_KEY = '53e09f7c-1070-4504-bf17-72f2f2d32572'
+Recall::SINCH_APPLICATION_SECRET = 'i7ovcaLg40qSeT71zVbvCQ=='
 
 # sandbox2
 # Recall::SINCH_APPLICATION_KEY = '7ea14a09-2462-4d5c-a561-9441606a18cc'
